@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+char s[10005];
+int top=-1;
+int main() {
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        top=-1;
+        char ch[10005];
+        scanf("%s",ch);
+        int n=strlen(ch);
+    int i=0;
+    if(ch[0]=='{'&&ch[n-1]!='}'){printf("Compilation Errors\n");continue;}
+    int a=0,b=0,c=0;
+    while(ch[i])
+    {
+        if(ch[i]=='(')
+        {
+            a++;
+            s[++top]=ch[i];
+        }
+        else if(ch[i]=='<')
+        {
+            b++;a++;
+            s[++top]=ch[i];
+        }
+        else if(ch[i]=='{')
+        {
+            if(a==0&&i!=0){printf("Compilation Errors\n");c=1;break;}
+            s[++top]=ch[i];
+        }
+        else if(ch[i]=='>')
+        {
+            if(b>1){printf("Compilation Errors\n");c=1;break;}
+            if(s[top]!='<'){printf("Compilation Errors\n");c=1;break;}
+            top--;
+            a--;
+        }
+        else if(ch[i]==')')
+        {
+            if(s[top]!='('){printf("Compilation Errors\n");c=1;break;}
+            top--;
+            a--;
+        }
+        
+        else if(ch[i]=='}')
+        {
+            if(s[top]!='{'){printf("Compilation Errors\n");c=1;break;}
+            top--;
+        }
+        i++;
+    }
+     if(c==1)continue;   
+     if(b==1&&top==-1)printf("No Compilation Errors\n");
+        else printf("Compilation Errors\n");
+    }
+    return 0;
+}
