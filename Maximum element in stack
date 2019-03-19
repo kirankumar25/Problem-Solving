@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+long long int n,s[10000000],k,r,top=-1,max[1000000],i=-1,r;
+//int* s=(int *)malloc(sizeof(int)*100000000);
+void push(long  int x)
+{
+    if(top==-1){
+    s[++top]=x;
+    max[++i]=x;
+    }
+    else if(max[i]<=x){
+        s[++top]=x;
+        max[++i]=x;
+    }
+    else
+    {
+        s[++top]=x;
+    }
+}
+void pop()
+{
+    if(max[i]==s[top]){
+       top--;
+       i--;
+    }
+    else{
+        top--;
+    }
+
+}
+int main() {
+
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
+    scanf("%lld",&n);
+    while(n>0)
+    {
+        scanf("%lld",&k);
+        switch(k)
+        {
+            case 1:scanf("%lld",&r);
+                   push(r);
+                   break;
+            case 2:pop();
+                   break;
+            case 3:printf("%lld\n",max[i]);
+                   break;
+        }
+        n--;
+    }
+    return 0;
+}
