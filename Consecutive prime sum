@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+int isprime(int n)
+{
+    if(n==2 || n==3)
+        return 1;
+    if(n==1||n%2==0 ||n%3==0)
+        return 0;
+        register int k=sqrt(n),i;
+    for(i=5;i<=k;)
+    {
+        if(n%i==0 ||n%(i+2)==0)
+            return 0;    
+            i=i+6;
+    }    
+    return 1;
+}
+int main() {
+
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    long long int n;
+    scanf("%lld",&n);
+    long long int s=2,c=0;
+    for(int i=3;i<=n;i++)
+    {
+        
+        if(isprime(i))
+        {
+            s=s+i;
+            if(isprime(s))
+            {
+                
+                if(s>n)
+                    break;
+                c++;
+                
+            }
+        }
+    }
+    printf("%lld",c);
+    return 0;
+}
