@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+long int n,i,a[10000],max=0,c,j,t=0,r=0;
+int main() {
+
+    scanf("%ld",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%ld",&a[i]);
+    }
+    if(n<2)
+        printf("-1");
+    else{
+    for(i=0;i<n;i++)
+    {
+        c=0;
+        for(j=0;j<n;j++)
+        {
+            if(a[j]%a[i]==0)
+            {
+                c++;
+            }
+        }
+        if(c>=(max+2) && a[i]>t){
+            max=c;
+            t=a[i];
+        }
+        else
+        {
+            r++;
+        }
+        max=0;
+    }
+    if(r==n)
+        printf("1");
+    else
+        printf("%ld",t);
+    }
+    return 0;
+}
